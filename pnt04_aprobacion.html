@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>PNT-04: Dispersión de Lotes</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+
+<div class="header">
+    <h2>CashMatch ERP</h2>
+    <div>Usuario: CsarChvz | <a href="#" style="color: #d0e1f9; text-decoration: underline;">Logout</a></div>
+</div>
+<div class="nav-menu">
+    <a href="index.html">Inicio</a>
+    <a href="pnt01_conciliacion.html">Mesa de Conciliación</a>
+    <a href="pnt02_ingesta.html">Ingesta de Extractos</a>
+    <a href="pnt03_facturas.html">Registro de Facturas</a>
+    <a href="pnt04_aprobacion.html">Lotes de Pago</a>
+    <a href="pnt05_reportes.html">Reportes</a>
+</div>
+
+<div class="container">
+    <div class="card" style="display:flex; justify-content:space-around; background-color:#e2e8f0; border: 1px solid #cbd5e1;">
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: #475569; font-weight: bold;">SALDO EN BANCOS</div>
+            <div style="font-size: 24px; color: #0f172a; font-weight: bold;">$4,580,200.00</div>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: #475569; font-weight: bold;">LOTES POR APROBAR</div>
+            <div style="font-size: 24px; color: #0f172a; font-weight: bold;">2</div>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: #475569; font-weight: bold;">MONTO POR DISPERSAR</div>
+            <div style="font-size: 24px; color: #b91c1c; font-weight: bold;">$845,000.00</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h4>LOTES DE PAGO PENDIENTES DE AUTORIZACIÓN:</h4>
+        <div style="border:1px solid #e2e8f0; padding: 20px; margin-bottom: 15px; border-radius: 8px; background: #f8fafc;">
+            <div style="display: flex; justify-content: space-between;">
+                <h5 style="margin:0; font-size: 18px; color: #0f172a;">[Lote #L-2026-09-A] - Proveedores Críticos / Servicios Nube</h5>
+                <span class="badge badge-warning" style="font-size:14px;">Monto Total: $320,000.00 MXN</span>
+            </div>
+            <p style="color: #475569; margin-top: 10px;">Creado por: j_analista | Fecha Creación: 30-Sep-2026 09:30 AM | Total Facturas: 12</p>
+            <p style="color: #475569;">Cuenta Origen: BBVA Operativa (***9821)</p>
+            
+            <div style="margin: 15px 0; padding: 10px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 4px; color: #065f46; font-weight: bold;">
+                Verificación de Calidad: [✔ 100% Facturas Validadas] [✔ Fondos Suficientes Confirmados]
+            </div>
+            
+            <details style="margin-bottom: 20px; background: white; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px;">
+                <summary style="font-weight: bold; cursor: pointer; color: #0055a5;">Ver detalle de facturas</summary>
+                <ul style="margin-top: 10px; color: #334155;">
+                    <li style="margin-bottom: 5px;">AWS Cloud Services: $120,000.00 | Ref: INV-9841 | Cuenta: CLABE ***4401</li>
+                    <li style="margin-bottom: 5px;">Datadog Monitoring: $80,000.00 | Ref: INV-1102 | Cuenta: CLABE ***1190</li>
+                    <li>Redes y Fibras SA: $120,000.00 | Ref: INV-3391 | Cuenta: CLABE ***8721</li>
+                </ul>
+            </details>
+            
+            <div style="text-align: right; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                <button class="btn btn-danger" onclick="rechazarLote()" style="margin-right: 10px;">[✖] Rechazar Lote</button>
+                <button class="btn btn-success" onclick="autorizarLote()" style="font-size: 16px; padding: 12px 25px;">[🔒] AUTORIZAR Y DISPERSAR LOTE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

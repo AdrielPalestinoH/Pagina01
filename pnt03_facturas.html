@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>PNT-03: Registro de Facturas</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+
+<div class="header">
+    <h2>CashMatch ERP</h2>
+    <div>Usuario: CsarChvz | <a href="#" style="color: #d0e1f9; text-decoration: underline;">Logout</a></div>
+</div>
+<div class="nav-menu">
+    <a href="index.html">Inicio</a>
+    <a href="pnt01_conciliacion.html">Mesa de Conciliación</a>
+    <a href="pnt02_ingesta.html">Ingesta de Extractos</a>
+    <a href="pnt03_facturas.html">Registro de Facturas</a>
+    <a href="pnt04_aprobacion.html">Lotes de Pago</a>
+    <a href="pnt05_reportes.html">Reportes</a>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3>FORMULARIO DE REGISTRO / EDICIÓN DE FACTURA</h3>
+        <form id="form-factura" onsubmit="event.preventDefault(); guardarFactura();">
+            <div class="split-screen">
+                <div class="split-panel" style="box-shadow:none; padding:0;">
+                    <div class="form-group"><label>Folio / Factura (*):</label><input type="text" id="folio" required pattern="^[A-Z0-9\-]+$" value="INV-2026-991"></div>
+                    <div class="form-group"><label>Razón Social (*):</label><input type="text" id="razon" required minlength="3" value="Acme Corporation S.A."></div>
+                    <div class="form-group"><label>Fecha Emisión (*):</label><input type="date" id="fechaEmision" required value="2026-09-25"></div>
+                    <div class="form-group"><label>Moneda (*):</label><select><option>MXN - Peso Mexicano</option></select></div>
+                </div>
+                <div class="split-panel" style="box-shadow:none; padding:0;">
+                    <div class="form-group"><label>RFC Proveedor (*):</label><input type="text" id="rfc" required minlength="12" maxlength="13" value="ACM850101XYZ"></div>
+                    <div class="form-group"><label>Cuenta CLABE (*):</label><input type="text" id="clabe" required pattern="\d{18}" title="Debe contener 18 dígitos" value="012180001234567890"></div>
+                    <div class="form-group"><label>Fecha Vencimiento (*):</label><input type="date" id="fechaVenc" required value="2026-10-25"></div>
+                    <div class="form-group"><label>Monto Total (*):</label><input type="number" id="monto" required min="0.01" step="0.01" value="20000.00"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Observaciones / Concepto:</label>
+                <input type="text" id="observaciones" value="Servicios de consultoría de infraestructura nube - Septiembre 2026">
+            </div>
+            <div style="margin-bottom: 20px; font-weight: bold; background: #f8fbff; padding: 10px; border: 1px solid #cce5ff; border-radius: 4px;">
+                <input type="checkbox" id="verificacion" required checked>
+                <label for="verificacion" style="display:inline; margin-left: 5px;">He verificado que los datos fiscales coinciden con la representación impresa del CFDI.</label>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">Guardar Factura</button>
+                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

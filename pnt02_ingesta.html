@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>PNT-02: Ingesta de Extractos</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+
+<div class="header">
+    <h2>CashMatch ERP</h2>
+    <div>Usuario: CsarChvz | <a href="#" style="color: #d0e1f9; text-decoration: underline;">Logout</a></div>
+</div>
+<div class="nav-menu">
+    <a href="index.html">Inicio</a>
+    <a href="pnt01_conciliacion.html">Mesa de Conciliación</a>
+    <a href="pnt02_ingesta.html">Ingesta de Extractos</a>
+    <a href="pnt03_facturas.html">Registro de Facturas</a>
+    <a href="pnt04_aprobacion.html">Lotes de Pago</a>
+    <a href="pnt05_reportes.html">Reportes</a>
+</div>
+
+<div class="container">
+    <div class="split-screen">
+        <div class="split-panel" style="border: 2px dashed #0055a5; text-align: center; padding: 40px; background-color: #f8fbff;">
+            <h3>ZONA DE CARGA: EXTRACTO BANCARIO</h3>
+            <div style="font-size: 40px; color: #0055a5;">↑</div>
+            <p style="font-weight: bold; font-size: 16px;">Arrastra aquí archivo bancario (CSV / TXT)</p>
+            <p>o <label for="fileExtracto" style="color:#0055a5; cursor:pointer; text-decoration:underline;">Explorar Archivos</label></p>
+            <input type="file" id="fileExtracto" accept=".csv, .txt" style="display:none;" onchange="actualizarNombreArchivo(this)">
+            <p id="nombreArchivoSel" style="color: #666; font-style: italic;"></p>
+            <br>
+            <div style="display:flex; justify-content:center; gap: 15px;">
+                <div>
+                    <label style="display:block; text-align:left; font-size:12px;">Banco Destino:</label>
+                    <select id="bancoDestino"><option>BBVA Bancomer</option><option>Santander</option><option>Banorte</option></select>
+                </div>
+                <div>
+                    <label style="display:block; text-align:left; font-size:12px;">Formato:</label>
+                    <select id="formato"><option>Layout Estándar 16 Col</option></select>
+                </div>
+            </div>
+            <br><br>
+            <button class="btn btn-primary" onclick="procesarArchivo()" style="width:100%;">Iniciar Procesamiento de Archivo</button>
+            <p style="font-size: 11px; margin-top: 15px; color: #888;">* Los archivos cargados contienen información financiera confidencial sujeta al Aviso de Privacidad.</p>
+        </div>
+        <div class="split-panel">
+            <h3>ACCIONES RÁPIDAS</h3>
+            <button class="btn btn-secondary" style="width:100%; margin-bottom:15px; padding: 15px;">[+] Nueva Factura Manual</button>
+            <button class="btn btn-secondary" style="width:100%; margin-bottom:15px; padding: 15px;">[⬇] Importar Catálogo XML / CFDI</button>
+            <button class="btn btn-secondary" style="width:100%; padding: 15px;">[📄] Descargar Plantilla Layout</button>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top: 25px;">
+        <h4>HISTORIAL DE ARCHIVOS CARGADOS RECIENTEMENTE</h4>
+        <table>
+            <tr><th>ID Archivo</th><th>Nombre Archivo</th><th>Registros</th><th>Monto Ttl</th><th>Estado</th><th>Logs de Validación</th></tr>
+            <tr><td>ARC-1082</td><td>estado_sep_semana4.csv</td><td>450 filas</td><td>$1.2M MXN</td><td><span class="badge badge-success">EXITOSO</span></td><td>450 válidos, 0 errores</td></tr>
+            <tr><td>ARC-1081</td><td>bbva_diario_2809.csv</td><td>80 filas</td><td>$240K MXN</td><td><span class="badge badge-warning">CON ERRORES</span></td><td><a href="#">2 filas con formato mal</a></td></tr>
+        </table>
+    </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
