@@ -1,0 +1,32 @@
+# PostgreSQL local para CashMatch ERP (desarrollo).
+# Uso (desde esta carpeta, src/main/resources):
+#   copiar .env.example a .env y editarlo (solo la primera vez)
+#   docker compose up -d        # primer arranque: carga db/base_datos_proyecto.sql
+#   docker compose ps           # espera estado "healthy"
+#   docker compose logs -f db
+#   docker compose down         # detiene (conserva datos)
+#   docker compose down -v      # RESETEA: borra el volumen; el SQL se recarga al volver a subir
+# Ver db/README_DOCKER.md para la conexion con DBeaver.
+services:
+  db:
+    image: postgres:14.19
+    container_name: cashmatch_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cashmatch_erp   # el script SQL aborta si la base no se llama asi
+      POSTGRES_USER: ${DB_USER:?Define DB_USER en .env (ver .env.example)}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en .env (ver .env.example)}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5433}:5432"   # solo loopback, nunca expuesto a la red
+    volumes:
+      - cashmatch_pgdata:/var/lib/postgresql/data
+      - ./db/base_datos_proyecto.sql:/docker-entrypoint-initdb.d/01_base_datos_proyecto.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  cashmatch_pgdata:
